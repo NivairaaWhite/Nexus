@@ -1,0 +1,49 @@
+# Nexus default configuration
+# Copy to config.yaml and customize for your environment.
+
+scope:
+  name: "lab-environment"
+  # Strict allow-list — only these targets may be touched
+  ip_ranges:
+    - "10.0.0.0/24"
+    - "192.168.1.0/24"
+  domains:
+    - "lab.example.com"
+    - "test.example.internal"
+  hostnames: []
+  endpoints: []
+  max_concurrent: 10
+  rate_limit_rps: 10.0
+  # NEVER set allow_destructive: true in real use
+
+# Agent-specific settings
+scout:
+  passive_only: false
+  max_ports_per_host: 100
+
+analyst:
+  min_severity: "low"
+  enable_attack_graph: true
+
+operator:
+  max_steps_per_path: 5
+  poc_timeout_seconds: 30
+
+chronicler:
+  output_dir: "./data/campaigns"
+  enable_jira: false
+  enable_slack: false
+
+evolutor:
+  memory_dir: "./data/evolution"
+  min_campaigns_for_policy: 3
+
+# Global
+logging:
+  level: "INFO"
+  format: "json"
+
+safety:
+  latency_threshold_ms: 2000
+  error_rate_threshold: 0.4
+  auto_abort_on_instability: true

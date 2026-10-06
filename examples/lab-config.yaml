@@ -1,0 +1,22 @@
+# Example configuration for a local lab environment
+# WARNING: Only point at systems you own or have explicit written authorization to test.
+
+scope:
+  name: "local-lab"
+  ip_ranges:
+    - "127.0.0.0/8"
+    - "10.0.0.0/8"
+  domains:
+    - "localhost"
+    - "lab.local"
+  max_concurrent: 3
+  rate_limit_rps: 1.0
+
+chronicler:
+  output_dir: "./data/campaigns"
+
+evolutor:
+  memory_dir: "./data/evolution"
+
+logging:
+  level: "INFO"

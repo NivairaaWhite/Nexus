@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nexus-cart"
+version = "0.1.1"
+description = "Nexus — Advanced Self-Evolving Continuous Automated Red Teaming / BAS Platform"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Nexus Contributors"}
+]
+keywords = ["red-team", "cart", "bas", "security", "automation", "multi-agent"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+]
+
+dependencies = [
+    "pydantic>=2.5",
+    "pydantic-settings>=2.1",
+    "pyyaml>=6.0",
+    "httpx>=0.26",
+    "aiohttp>=3.9",
+    "networkx>=3.2",
+    "neo4j>=5.15",
+    "opentelemetry-api>=1.22",
+    "opentelemetry-sdk>=1.22",
+    "structlog>=24.1",
+    "rich>=13.7",
+    "typer>=0.9",
+    "click>=8.1",
+    "python-dotenv>=1.0",
+    "tenacity>=8.2",
+    "numpy>=1.26",
+    "scikit-learn>=1.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.2",
+    "mypy>=1.8",
+    "black>=24.1",
+]
+llm = [
+    "openai>=1.12",
+    "anthropic>=0.18",
+    "litellm>=1.30",
+]
+full = [
+    "nexus-cart[dev,llm]",
+]
+
+[project.scripts]
+nexus = "nexus.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["nexus*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
